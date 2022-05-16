@@ -1,4 +1,9 @@
-export const PageWelcome = ({books, members, siteTitle}) => {
+import { useContext } from 'react';
+import { AppContext } from '../AppContext';
+
+export const PageWelcome = ({books, members}) => {
+	const { siteTitle } = useContext(AppContext);
+
 	return (
 		<div className="page_welcome">
 			<h2>Welcome</h2>

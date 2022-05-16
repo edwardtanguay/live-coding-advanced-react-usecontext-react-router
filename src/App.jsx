@@ -4,16 +4,17 @@ import { PageBooks } from './pages/PageBooks';
 import { PageMembers } from './pages/PageMembers';
 import { PageAbout } from './pages/PageAbout';
 import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { AppContext } from './AppContext';
 
 const bookUrl = 'https://edwardtanguay.netlify.app/share/books.json';
 const memberUrl = 'https://edwardtanguay.netlify.app/share/employees.json';
-const siteTitle = "The Online Book Club";
 
 function App() {
 	const [books, setBooks] = useState([]);
 	const [members, setMembers] = useState([]);
+	const { siteTitle } = useContext(AppContext);
 
 	useEffect(() => {
 		(async () => {
@@ -37,11 +38,29 @@ function App() {
 			<NavLink to="/about">About</NavLink>
 			<hr />
 			<Routes>
-				<Route path="/welcome" element={<PageWelcome books={books} members={members} siteTitle={siteTitle} />} />
-				<Route path="/books" element={<PageBooks books={books} setBooks={setBooks} />} />
-				<Route path="/members" element={<PageMembers members={members} />} />
-				<Route path="/about" element={<PageAbout books={books} members={members} siteTitle={siteTitle} />} />
-				<Route path="/" element={<Navigate to="/welcome" replace />}/>
+				<Route
+					path="/welcome"
+					element={<PageWelcome books={books} members={members} />}
+				/>
+				<Route
+					path="/books"
+					element={<PageBooks books={books} setBooks={setBooks} />}
+				/>
+				<Route
+					path="/members"
+					element={<PageMembers members={members} />}
+				/>
+				<Route
+					path="/about"
+					element={
+						<PageAbout
+							books={books}
+							members={members}
+							siteTitle={siteTitle}
+						/>
+					}
+				/>
+				<Route path="/" element={<Navigate to="/welcome" replace />} />
 			</Routes>
 		</div>
 	);
