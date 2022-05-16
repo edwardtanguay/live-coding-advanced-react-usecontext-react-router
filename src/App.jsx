@@ -4,8 +4,20 @@ import { PageBooks } from './pages/PageBooks';
 import { PageMembers } from './pages/PageMembers';
 import { PageAbout } from './pages/PageAbout';
 import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const bookUrl = 'https://edwardtanguay.netlify.app/share/books.json';
 
 function App() {
+	const [books, setBooks] = useState([]);
+
+	useEffect(() => {
+		(async () => {
+			setBooks((await axios.get(bookUrl)).data);
+		})();
+	}, []);
+
 	return (
 		<div className="App">
 			<h1>Book Club</h1>
@@ -16,7 +28,7 @@ function App() {
 			<NavLink to="/about">About</NavLink>
 			<hr />
 			<Routes>
-				<Route path="/welcome" element={<PageWelcome />} />
+				<Route path="/welcome" element={<PageWelcome books={books} />} />
 				<Route path="/books" element={<PageBooks />} />
 				<Route path="/members" element={<PageMembers />} />
 				<Route path="/about" element={<PageAbout />} />
