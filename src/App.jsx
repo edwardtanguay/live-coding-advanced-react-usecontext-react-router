@@ -8,13 +8,21 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const bookUrl = 'https://edwardtanguay.netlify.app/share/books.json';
+const memberUrl = 'https://edwardtanguay.netlify.app/share/employees.json';
 
 function App() {
 	const [books, setBooks] = useState([]);
+	const [members, setMembers] = useState([]);
 
 	useEffect(() => {
 		(async () => {
 			setBooks((await axios.get(bookUrl)).data);
+		})();
+	}, []);
+
+	useEffect(() => {
+		(async () => {
+			setMembers((await axios.get(memberUrl)).data);
 		})();
 	}, []);
 
@@ -28,10 +36,10 @@ function App() {
 			<NavLink to="/about">About</NavLink>
 			<hr />
 			<Routes>
-				<Route path="/welcome" element={<PageWelcome books={books} />} />
+				<Route path="/welcome" element={<PageWelcome books={books} members={members} />} />
 				<Route path="/books" element={<PageBooks books={books} />} />
-				<Route path="/members" element={<PageMembers />} />
-				<Route path="/about" element={<PageAbout books={books} />} />
+				<Route path="/members" element={<PageMembers members={members} />} />
+				<Route path="/about" element={<PageAbout books={books} members={members} />} />
 				<Route path="/" element={<Navigate to="/welcome" replace />}/>
 			</Routes>
 		</div>
