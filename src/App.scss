@@ -12,4 +12,13 @@ body {
 	a.active {
 		color: yellow;
 	}
+
+	.books {
+		.book {
+			background-color: #222;
+			padding: 10px;
+			border-radius: 5px;
+			margin: 0 0 10px 0;
+		}
+	}
 }

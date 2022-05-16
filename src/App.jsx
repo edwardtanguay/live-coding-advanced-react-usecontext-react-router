@@ -29,7 +29,7 @@ function App() {
 			<hr />
 			<Routes>
 				<Route path="/welcome" element={<PageWelcome books={books} />} />
-				<Route path="/books" element={<PageBooks />} />
+				<Route path="/books" element={<PageBooks books={books} />} />
 				<Route path="/members" element={<PageMembers />} />
 				<Route path="/about" element={<PageAbout />} />
 				<Route path="/" element={<Navigate to="/welcome" replace />}/>
