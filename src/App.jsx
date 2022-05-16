@@ -31,7 +31,7 @@ function App() {
 				<Route path="/welcome" element={<PageWelcome books={books} />} />
 				<Route path="/books" element={<PageBooks books={books} />} />
 				<Route path="/members" element={<PageMembers />} />
-				<Route path="/about" element={<PageAbout />} />
+				<Route path="/about" element={<PageAbout books={books} />} />
 				<Route path="/" element={<Navigate to="/welcome" replace />}/>
 			</Routes>
 		</div>
