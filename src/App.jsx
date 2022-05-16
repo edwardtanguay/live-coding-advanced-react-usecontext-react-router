@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const bookUrl = 'https://edwardtanguay.netlify.app/share/books.json';
 const memberUrl = 'https://edwardtanguay.netlify.app/share/employees.json';
+const siteTitle = "The Online Book Club";
 
 function App() {
 	const [books, setBooks] = useState([]);
@@ -28,7 +29,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Book Club</h1>
+			<h1>{siteTitle}</h1>
 			<hr />
 			<NavLink to="/welcome">Welcome</NavLink> |{' '}
 			<NavLink to="/books">Books</NavLink> |{' '}
@@ -36,10 +37,10 @@ function App() {
 			<NavLink to="/about">About</NavLink>
 			<hr />
 			<Routes>
-				<Route path="/welcome" element={<PageWelcome books={books} members={members} />} />
+				<Route path="/welcome" element={<PageWelcome books={books} members={members} siteTitle={siteTitle} />} />
 				<Route path="/books" element={<PageBooks books={books} setBooks={setBooks} />} />
 				<Route path="/members" element={<PageMembers members={members} />} />
-				<Route path="/about" element={<PageAbout books={books} members={members} />} />
+				<Route path="/about" element={<PageAbout books={books} members={members} siteTitle={siteTitle} />} />
 				<Route path="/" element={<Navigate to="/welcome" replace />}/>
 			</Routes>
 		</div>
