@@ -56,7 +56,6 @@ function App() {
 						<PageAbout
 							books={books}
 							members={members}
-							siteTitle={siteTitle}
 						/>
 					}
 				/>
