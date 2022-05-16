@@ -23,6 +23,16 @@ export const AppProvider = ({ children }) => {
 		})();
 	}, []);
 
+	const handleDelete = (book) => {
+		const _books = books.filter(m => m.id !== book.id);
+		setBooks(_books);
+	}
+
+	const handleEdit = (book) => {
+		book.title = book.title + ' - FINISHED';
+		setBooks([...books]);
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -30,6 +40,8 @@ export const AppProvider = ({ children }) => {
 				books,
 				setBooks,
 				members,
+				handleDelete,
+				handleEdit
 			}}
 		>
 			{children}

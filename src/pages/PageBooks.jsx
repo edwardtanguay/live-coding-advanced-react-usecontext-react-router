@@ -2,18 +2,8 @@ import { useContext } from 'react';
 import { AppContext } from '../AppContext';
 
 export const PageBooks = () => {
-	const { books, setBooks } = useContext(AppContext);
-	
-	const handleDelete = (book) => {
-		const _books = books.filter(m => m.id !== book.id);
-		setBooks(_books);
-	}
+	const { books, handleDelete, handleEdit } = useContext(AppContext);
 
-	const handleEdit = (book) => {
-		book.title = book.title + ' - FINISHED';
-		setBooks([...books]);
-	}
-	
 	return (
 		<div className="page_books">
 			<h2>Books</h2>
@@ -32,8 +22,12 @@ export const PageBooks = () => {
 									{book.description}
 								</div>
 								<div className="buttonArea">
-									<button onClick={() => handleDelete(book)}>Delete</button>
-									<button onClick={() => handleEdit(book)}>Edit</button>
+									<button onClick={() => handleDelete(book)}>
+										Delete
+									</button>
+									<button onClick={() => handleEdit(book)}>
+										Edit
+									</button>
 								</div>
 							</div>
 						</div>
