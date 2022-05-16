@@ -1,4 +1,8 @@
-export const PageBooks = ({ books, setBooks }) => {
+import { useContext } from 'react';
+import { AppContext } from '../AppContext';
+
+export const PageBooks = () => {
+	const { books, setBooks } = useContext(AppContext);
 	
 	const handleDelete = (book) => {
 		const _books = books.filter(m => m.id !== book.id);
