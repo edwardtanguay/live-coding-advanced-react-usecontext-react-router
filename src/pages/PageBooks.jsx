@@ -1,4 +1,15 @@
-export const PageBooks = ({ books }) => {
+export const PageBooks = ({ books, setBooks }) => {
+	
+	const handleDelete = (book) => {
+		const _books = books.filter(m => m.id !== book.id);
+		setBooks(_books);
+	}
+
+	const handleEdit = (book) => {
+		book.title = book.title + ' - FINISHED';
+		setBooks([...books]);
+	}
+	
 	return (
 		<div className="page_books">
 			<h2>Books</h2>
@@ -15,6 +26,10 @@ export const PageBooks = ({ books }) => {
 								<div className="title">{book.title}</div>
 								<div className="description">
 									{book.description}
+								</div>
+								<div className="buttonArea">
+									<button onClick={() => handleDelete(book)}>Delete</button>
+									<button onClick={() => handleEdit(book)}>Edit</button>
 								</div>
 							</div>
 						</div>
